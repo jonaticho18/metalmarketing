@@ -132,7 +132,7 @@
     }
 
     .logo img {
-      height: 48px;
+      height: 72px; /* 50% más grande que antes (48px) */
       width: auto;
     }
 
@@ -440,12 +440,50 @@
       color: var(--brand-gray);
     }
 
-    .trusted-logos {
-      display: flex;
-      gap: 0.5rem;
-      opacity: 0.75;
+    /* CARRUSEL CLIENTES HERO */
+    .clients-carousel {
+      margin-top: 1.8rem;
+      background: rgba(0, 0, 0, 0.85);
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 1rem 1.2rem;
+    }
+
+    .clients-label {
       font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
       color: var(--brand-gray);
+      margin-bottom: 0.8rem;
+    }
+
+    .clients-slides {
+      position: relative;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .client-slide {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .client-slide.active {
+      opacity: 1;
+    }
+
+    .client-slide img {
+      max-height: 40px;
+      width: auto;
+      opacity: 0.9;
+      filter: grayscale(10%);
     }
 
     /* PROBLEMA */
@@ -534,6 +572,20 @@
     .problem-benefits ul li::before {
       content: '• ';
       color: var(--brand-orange);
+    }
+
+    /* Imagen métricas debajo de la sección */
+    .metrics-image-wrapper {
+      margin-top: 2.5rem;
+      text-align: center;
+    }
+
+    .metrics-image-wrapper img {
+      max-width: 260px;
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: var(--shadow-card);
     }
 
     /* SERVICIOS */
@@ -723,17 +775,17 @@
     }
 
     .why-list li span.icon {
-      width: 22px;
-      height: 22px;
+      width: 26px;
+      height: 26px;
       border-radius: 999px;
-      background: rgba(214, 40, 40, 0.1);
-      border: 1px solid rgba(214, 40, 40, 0.6);
+      background: #ffffff;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.9rem;
+      font-size: 1rem;
       color: var(--brand-orange);
-      margin-top: 0.1rem;
+      margin-top: 0.05rem;
+      flex-shrink: 0;
     }
 
     .why-card {
@@ -840,6 +892,13 @@
     .testimonial-item {
       min-width: 100%;
       padding: 1.7rem 1.6rem 1.5rem;
+      text-align: center;
+    }
+
+    .testimonial-stars {
+      color: #FFD700;
+      margin-bottom: 0.6rem;
+      font-size: 1.05rem;
     }
 
     .testimonial-quote {
@@ -855,9 +914,11 @@
     }
 
     .testimonial-author span {
+      display: block;
       font-size: 0.78rem;
       color: var(--brand-gray);
       font-weight: 400;
+      margin-top: 0.15rem;
     }
 
     .testimonial-controls {
@@ -913,10 +974,18 @@
     .maps-link {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 0.4rem;
-      margin-top: 0.8rem;
+      margin-top: 1rem;
       font-size: 0.85rem;
-      color: var(--brand-orange);
+      color: #ffffff;
+      padding: 0.6rem 1.4rem;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--brand-orange), var(--brand-red));
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 600;
+      box-shadow: 0 8px 24px rgba(246, 133, 27, 0.6);
     }
 
     .maps-link span.icon {
@@ -1006,34 +1075,6 @@
       text-align: center;
     }
 
-    .contact-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1.2rem;
-      margin: 2rem 0;
-    }
-
-    .contact-item {
-      background: rgba(0, 0, 0, 0.9);
-      border-radius: var(--radius-lg);
-      padding: 1.2rem 1rem;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      font-size: 0.9rem;
-      color: var(--brand-gray);
-    }
-
-    .contact-item span.icon {
-      display: inline-block;
-      margin-bottom: 0.5rem;
-      font-size: 1.2rem;
-    }
-
-    .contact-item strong {
-      display: block;
-      color: #ffffff;
-      margin-bottom: 0.2rem;
-    }
-
     /* FOOTER */
     footer {
       background: #000000;
@@ -1056,6 +1097,12 @@
       justify-content: center;
       gap: 0.9rem;
       font-size: 1.1rem;
+    }
+
+    .footer-socials img {
+      height: 22px;
+      width: auto;
+      display: block;
     }
 
     /* WHATSAPP FLOAT */
@@ -1121,8 +1168,7 @@
       }
 
       .services-grid,
-      .pricing-grid,
-      .contact-grid {
+      .pricing-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
@@ -1165,8 +1211,7 @@
       }
 
       .services-grid,
-      .pricing-grid,
-      .contact-grid {
+      .pricing-grid {
         grid-template-columns: minmax(0, 1fr);
       }
 
@@ -1227,7 +1272,7 @@
           <li>
             <a href="https://wa.me/5493515310015?text=Hola%20Metal%20Marketing%2C%20quiero%20mejorar%20el%20marketing%20de%20mi%20negocio.%20%C2%BFPodemos%20hablar%3F" target="_blank" class="nav-cta">
               <span class="icon">💬</span>
-              <span>Hablá por WhatsApp</span>
+              <span>Hablemos por Whatsapp</span>
             </a>
           </li>
         </ul>
@@ -1270,14 +1315,39 @@
               <span class="icon">🚀</span>
               <span>Quiero más clientes para mi negocio</span>
             </a>
-            <a href="https://calendly.com/metalmarketingagencia/30min" target="_blank" class="btn btn-outline">
-              <span class="icon">📅</span>
-              <span>Agendar videollamada</span>
+            <a href="https://wa.me/5493515310015?text=Hola%20Metal%20Marketing%2C%20quiero%20mejorar%20el%20marketing%20de%20mi%20negocio.%20%C2%BFPodemos%20hablar%3F" target="_blank" class="btn btn-outline">
+              <span class="icon">💬</span>
+              <span>Hablemos por Whatsapp</span>
             </a>
           </div>
           <p class="hero-note">
             <span>Negocios y emprendedores en Argentina</span> confían en nuestro enfoque orientado a resultados.
           </p>
+
+          <!-- CARRUSEL DE CLIENTES -->
+          <div class="clients-carousel">
+            <p class="clients-label">Nuestros clientes · Tu empresa puede estar acá</p>
+            <div class="clients-slides" id="clientsSlides">
+              <div class="client-slide active">
+                <img src="./assets/images/imagen1.jpg" alt="Cliente 1">
+              </div>
+              <div class="client-slide">
+                <img src="./assets/images/imagen2.jpg" alt="Cliente 2">
+              </div>
+              <div class="client-slide">
+                <img src="./assets/images/imagen3.jpg" alt="Cliente 3">
+              </div>
+              <div class="client-slide">
+                <img src="./assets/images/imagen4.jpg" alt="Cliente 4">
+              </div>
+              <div class="client-slide">
+                <img src="./assets/images/imagen5.jpg" alt="Cliente 5">
+              </div>
+              <div class="client-slide">
+                <img src="./assets/images/imagen6.jpg" alt="Cliente 6">
+              </div>
+            </div>
+          </div>
         </div>
 
         <aside class="hero-visual">
@@ -1348,6 +1418,11 @@
             <li>Resultados sólidos, no promesas vacías.</li>
           </ul>
         </aside>
+      </div>
+
+      <!-- Imagen de métricas positivas -->
+      <div class="metrics-image-wrapper fade-in">
+        <img src="./assets/images/metricas-positivas.jpg" alt="Métricas positivas de campañas">
       </div>
     </div>
   </section>
@@ -1487,23 +1562,23 @@
           </div>
           <ul class="why-list">
             <li>
-              <span class="icon">⚙️</span>
+              <span class="icon">✓</span>
               <span>Estrategias sólidas, no improvisadas. Diseñamos sistemas que puedan medirse y mejorar.</span>
             </li>
             <li>
-              <span class="icon">🎯</span>
+              <span class="icon">✓</span>
               <span>Creatividades y mensajes pensados para convertir, no solo para “verse lindos”.</span>
             </li>
             <li>
-              <span class="icon">🤝</span>
+              <span class="icon">✓</span>
               <span>Atención personalizada, contacto directo y seguimiento cercano de tus campañas.</span>
             </li>
             <li>
-              <span class="icon">📊</span>
+              <span class="icon">✓</span>
               <span>Reportes claros, accionables y enfocados en métricas que importan.</span>
             </li>
             <li>
-              <span class="icon">⚡</span>
+              <span class="icon">✓</span>
               <span>Resultados medibles desde el primer mes y velocidad de implementación.</span>
             </li>
           </ul>
@@ -1569,50 +1644,60 @@
           <div class="testimonial-track" id="testimonialTrack">
             <!-- TESTIMONIO 1 -->
             <div class="testimonial-item">
+              <div class="testimonial-stars">★★★★★</div>
               <p class="testimonial-quote">
                 “Súper contentas con los servicios prestados por Jonathan. Muy buena persona,
                 siempre muy bien predispuesto.”
               </p>
               <p class="testimonial-author">
-                Natalia Goni <span>· Cliente Metal Marketing</span>
+                Natalia Goni
+                <span>Cliente Metal Marketing</span>
               </p>
             </div>
             <!-- TESTIMONIO 2 -->
             <div class="testimonial-item">
+              <div class="testimonial-stars">★★★★★</div>
               <p class="testimonial-quote">
                 “Muy profesionales, excelente trato, la mejor decisión que tuve para mi empresa.”
               </p>
               <p class="testimonial-author">
-                Juan Salgado <span>· Cliente Metal Marketing</span>
+                Juan Salgado
+                <span>Cliente Metal Marketing</span>
               </p>
             </div>
             <!-- TESTIMONIO 3 -->
             <div class="testimonial-item">
+              <div class="testimonial-stars">★★★★★</div>
               <p class="testimonial-quote">
                 “Trabajamos juntos y lo recomiendo. Nos ayuda a crecer nuestro negocio.”
               </p>
               <p class="testimonial-author">
-                Solange Amil <span>· Cliente Metal Marketing</span>
+                Solange Amil
+                <span>Cliente Metal Marketing</span>
               </p>
             </div>
             <!-- TESTIMONIO 4 -->
             <div class="testimonial-item">
+              <div class="testimonial-stars">★★★★★</div>
               <p class="testimonial-quote">
                 “Venimos trabajando con Jon hace poco menos de un año y logramos incrementar
                 notablemente casi todas las métricas en Meta Ads. Necesitábamos un mínimo de 100 consultas
                 diarias, a bajo costo y con leads calificados y lo estamos logrando. Muy conforme.”
               </p>
               <p class="testimonial-author">
-                Nico Costesich <span>· @flyingmuuar</span>
+                Nico Costesich
+                <span>@flyingmuuar</span>
               </p>
             </div>
             <!-- TESTIMONIO 5 -->
             <div class="testimonial-item">
+              <div class="testimonial-stars">★★★★★</div>
               <p class="testimonial-quote">
                 “Un asesor y community manager espectacular, recomiendo el servicio de esta empresa.”
               </p>
               <p class="testimonial-author">
-                Leandro Loiero <span>· Cliente Metal Marketing</span>
+                Leandro Loiero
+                <span>Cliente Metal Marketing</span>
               </p>
             </div>
           </div>
@@ -1671,7 +1756,7 @@
             <li>Soporte básico por WhatsApp.</li>
           </ul>
           <div class="pricing-cta">
-            <a href="https://calendly.com/metalmarketingagencia/30min" target="_blank" class="btn btn-outline" style="width: 100%;">Quiero este plan</a>
+            <a href="https://wa.me/5493515310015?text=Hola%20Metal%20Marketing%2C%20quiero%20hablar%20sobre%20el%20Plan%20Starter.%20%C2%BFMe%20cont%C3%A1s%20m%C3%A1s%3F" target="_blank" class="btn btn-outline" style="width: 100%;">Hablemos por Whatsapp</a>
           </div>
         </article>
 
@@ -1692,7 +1777,7 @@
             <li>Landing page de captura incluida.</li>
           </ul>
           <div class="pricing-cta">
-            <a href="https://calendly.com/metalmarketingagencia/30min" target="_blank" class="btn btn-primary" style="width: 100%;">Elegir este plan</a>
+            <a href="https://wa.me/5493515310015?text=Hola%20Metal%20Marketing%2C%20quiero%20hablar%20sobre%20el%20Plan%20Intermedio.%20%C2%BFMe%20cont%C3%A1s%20m%C3%A1s%3F" target="_blank" class="btn btn-primary" style="width: 100%;">Hablemos por Whatsapp</a>
           </div>
         </article>
 
@@ -1714,13 +1799,13 @@
             <li>Sitio web y landing pages optimizadas.</li>
           </ul>
           <div class="pricing-cta">
-            <a href="https://calendly.com/metalmarketingagencia/30min" target="_blank" class="btn btn-outline" style="width: 100%;">Hablemos de este plan</a>
+            <a href="https://wa.me/5493515310015?text=Hola%20Metal%20Marketing%2C%20quiero%20hablar%20sobre%20el%20Plan%20Avanzado.%20%C2%BFMe%20cont%C3%A1s%20m%C3%A1s%3F" target="_blank" class="btn btn-outline" style="width: 100%;">Hablemos por Whatsapp</a>
           </div>
         </article>
       </div>
 
       <p class="pricing-note fade-in">
-        Agendá una videollamada y definimos juntos el plan que mejor encaja con tu negocio.
+        Agendamos por WhatsApp y definimos juntos el plan que mejor encaja con tu negocio.
       </p>
     </div>
   </section>
@@ -1737,31 +1822,9 @@
           no en métricas de ego.
         </p>
 
-        <div class="contact-grid">
-          <div class="contact-item">
-            <span class="icon">📱</span>
-            <strong>WhatsApp</strong>
-            <a href="https://wa.me/5493515310015?text=Hola%20Metal%20Marketing%2C%20quiero%20mejorar%20el%20marketing%20de%20mi%20negocio.%20%C2%BFPodemos%20hablar%3F" target="_blank">
-              +54 9 351 5310015
-            </a>
-          </div>
-          <div class="contact-item">
-            <span class="icon">✉️</span>
-            <strong>Email</strong>
-            <a href="mailto:metalmarketingagencia@gmail.com">
-              metalmarketingagencia@gmail.com
-            </a>
-          </div>
-          <div class="contact-item">
-            <span class="icon">📍</span>
-            <strong>Ubicación</strong>
-            <span>Córdoba, Argentina</span>
-          </div>
-        </div>
-
         <a href="https://wa.me/5493515310015?text=Hola%20Metal%20Marketing%2C%20quiero%20mejorar%20el%20marketing%20de%20mi%20negocio.%20%C2%BFPodemos%20hablar%3F" target="_blank" class="btn btn-primary">
           <span class="icon">💬</span>
-          <span>Hablemos por WhatsApp</span>
+          <span>Hablemos por Whatsapp</span>
         </a>
       </div>
     </div>
@@ -1773,8 +1836,12 @@
       <p>© 2025 Metal Marketing. Todos los derechos reservados.</p>
       <p class="footer-tagline">Hecho con enfoque en resultados: clientes reales, no seguidores.</p>
       <div class="footer-socials">
-        <a href="https://www.instagram.com/metalmarketing.agencia/" target="_blank" aria-label="Instagram">📸</a>
-        <a href="https://www.facebook.com/metalmarketingagencia/" target="_blank" aria-label="Facebook">📘</a>
+        <a href="https://www.instagram.com/metalmarketing.agencia/" target="_blank" aria-label="Instagram">
+          <img src="./assets/images/logo-instagram.png" alt="Instagram Metal Marketing">
+        </a>
+        <a href="https://www.facebook.com/metalmarketingagencia/" target="_blank" aria-label="Facebook">
+          <img src="./assets/images/logo-facebook.png" alt="Facebook Metal Marketing">
+        </a>
       </div>
     </div>
   </footer>
@@ -1837,13 +1904,57 @@
     prevBtn.addEventListener('click', () => updateSlider(currentIndex - 1));
     nextBtn.addEventListener('click', () => updateSlider(currentIndex + 1));
 
-    // Auto-advance testimonials
     setInterval(() => {
       updateSlider(currentIndex + 1);
     }, 8000);
+
+    // Carrusel de clientes (hero) - rotación automática cada 2.5s
+    const clientSlides = document.querySelectorAll('.client-slide');
+    let clientIndex = 0;
+
+    function showClient(index) {
+      clientIndex = (index + clientSlides.length) % clientSlides.length;
+      clientSlides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === clientIndex);
+      });
+    }
+
+    if (clientSlides.length > 0) {
+      showClient(0);
+      setInterval(() => {
+        showClient(clientIndex + 1);
+      }, 2500);
+    }
   </script>
+
+  <!--
+    IMÁGENES A SUBIR (mismas rutas usadas en el HTML):
+
+    Logo principal:
+    ./assets/images/logo-metal-marketing.png
+
+    Carrusel de clientes (hero):
+    ./assets/images/imagen1.jpg
+    ./assets/images/imagen2.jpg
+    ./assets/images/imagen3.jpg
+    ./assets/images/imagen4.jpg
+    ./assets/images/imagen5.jpg
+    ./assets/images/imagen6.jpg
+
+    Imagen métricas positivas:
+    ./assets/images/metricas-positivas.jpg
+
+    Foto sección "Detrás de la estrategia":
+    ./assets/images/jonathan-metal-marketing.jpg
+
+    Logos redes sociales (footer):
+    ./assets/images/logo-instagram.png
+    ./assets/images/logo-facebook.png
+  -->
 </body>
 </html>
+
+
 
 
 
