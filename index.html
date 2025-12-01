@@ -367,7 +367,7 @@
     }
 
     .hero-visual {
-      background: radial-gradient(circle at top left, rgba(246, 133, 27, 0.1), rgba(5, 5, 7, 0.98));
+      background: radial-gradient(circle at top left, rgba(246, 133, 27, 0.12), rgba(5, 5, 7, 0.98));
       border-radius: var(--radius-lg);
       padding: 1.6rem;
       box-shadow: var(--shadow-soft);
@@ -488,7 +488,7 @@
 
     /* PROBLEMA */
     .problem {
-      background: radial-gradient(circle at top, #1c1c1c 0, #050509 55%);
+      background: radial-gradient(circle at top, #261010 0, #050509 55%);
       border-top: 1px solid rgba(255, 255, 255, 0.06);
     }
 
@@ -548,11 +548,18 @@
       font-size: 0.8rem;
     }
 
+    .problem-side {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
     .problem-benefits {
-      background: rgba(0, 0, 0, 0.85);
+      background: rgba(0, 0, 0, 0.9);
       border-radius: var(--radius-lg);
       padding: 1.5rem;
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      width: 100%;
     }
 
     .problem-benefits h3 {
@@ -574,24 +581,34 @@
       color: var(--brand-orange);
     }
 
-    /* Imagen métricas debajo de la sección */
+    /* Imagen métricas a la derecha, debajo de beneficios */
     .metrics-image-wrapper {
-      margin-top: 2.5rem;
+      margin-top: 1.7rem;
       text-align: center;
+      width: 100%;
     }
 
     .metrics-image-wrapper img {
-      max-width: 340px; /* ~30% más grande que antes (260px) */
+      max-width: 300px; /* tamaño más contenido */
       width: 100%;
+      margin: 0 auto;
       border-radius: 12px;
       border: 1px solid rgba(255, 255, 255, 0.12);
       box-shadow: var(--shadow-card);
     }
 
-    /* SERVICIOS */
+    /* SERVICIOS – sección clara */
     .services {
-      background: #ffffff; /* sección clara para descansar la vista */
+      background: #ffffff;
       color: var(--text-main);
+    }
+
+    .services .section-heading h2 {
+      color: var(--text-main);
+    }
+
+    .services .section-subtitle {
+      color: var(--text-muted);
     }
 
     .services-grid {
@@ -601,41 +618,58 @@
     }
 
     .service-card {
-      background: #000000;
+      background: #050509;
       border-radius: var(--radius-lg);
       padding: 1.7rem 1.5rem;
-      border: 1px solid var(--brand-orange);
+      border: 1px solid rgba(247, 127, 0, 0.9);
       box-shadow: var(--shadow-card);
       position: relative;
       overflow: hidden;
+      color: #ffffff;
     }
 
     .service-card::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at top left, rgba(214, 40, 40, 0.18), rgba(0, 0, 0, 0.95));
+      background: radial-gradient(circle at top left, rgba(247, 127, 0, 0.4), rgba(0, 0, 0, 0.95));
       mix-blend-mode: screen;
       opacity: 0;
       transition: opacity 0.2s ease;
+      pointer-events: none;
     }
 
     .service-card:hover::before {
       opacity: 1;
     }
 
-    .service-icon {
+    /* NUEVO: contenedor de imagen de servicio */
+    .service-image-wrapper {
       width: 100%;
-      max-width: 120px;
-      margin: 0 auto 1.2rem;
-      border-radius: 24px;
-      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 1.2rem;
     }
 
-    .service-icon img {
+    .service-image-wrapper img {
       width: 100%;
+      max-width: 170px; /* tamaño grande pero controlado */
       height: auto;
-      display: block;
+      border-radius: 12px;
+    }
+
+    /* (La clase service-icon queda por si acaso, pero ya no se usa) */
+    .service-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: rgba(0, 0, 0, 0.8);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
     }
 
     .service-card h3 {
@@ -644,17 +678,12 @@
       margin-bottom: 0.6rem;
       letter-spacing: 0.06em;
       text-transform: uppercase;
-      color: #ffffff;
-      position: relative;
-      z-index: 1;
     }
 
     .service-card p {
       font-size: 0.92rem;
       color: var(--brand-gray);
       margin-bottom: 1rem;
-      position: relative;
-      z-index: 1;
     }
 
     .service-features {
@@ -663,8 +692,6 @@
       color: var(--brand-gray);
       display: grid;
       gap: 0.35rem;
-      position: relative;
-      z-index: 1;
     }
 
     .service-features li::before {
@@ -675,7 +702,7 @@
 
     /* RESULTADOS */
     .results {
-      background: radial-gradient(circle at center, #121212 0, #050509 55%);
+      background: radial-gradient(circle at center, #1A0C0C 0, #050509 55%);
       border-top: 1px solid rgba(255, 255, 255, 0.06);
     }
 
@@ -815,9 +842,10 @@
       margin-bottom: 0.6rem;
     }
 
-    /* BIO / ABOUT */
+    /* BIO / ABOUT – sección clara */
     .about {
-      background: #050509;
+      background: #ffffff;
+      color: var(--text-main);
     }
 
     .about-inner {
@@ -830,7 +858,7 @@
     .about-photo {
       border-radius: var(--radius-lg);
       overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(0, 0, 0, 0.08);
       background: radial-gradient(circle at top, rgba(247, 127, 0, 0.18), rgba(0, 0, 0, 0.98));
       min-height: 260px;
       display: flex;
@@ -850,11 +878,12 @@
       text-transform: uppercase;
       letter-spacing: 0.12em;
       margin-bottom: 0.8rem;
+      color: var(--text-main);
     }
 
     .about-text p {
       font-size: 0.94rem;
-      color: var(--brand-gray);
+      color: var(--text-muted);
       margin-bottom: 0.6rem;
     }
 
@@ -869,8 +898,8 @@
       font-size: 0.78rem;
       padding: 0.3rem 0.7rem;
       border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      color: var(--brand-gray);
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      color: var(--text-muted);
     }
 
     /* TESTIMONIOS */
@@ -1088,7 +1117,7 @@
     /* FOOTER */
     footer {
       background: #000000;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      border-top: 2px solid var(--brand-red);
       padding: 1.7rem 0;
       text-align: center;
       font-size: 0.8rem;
@@ -1181,6 +1210,14 @@
       .pricing-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
+
+      .problem-side {
+        align-items: flex-start;
+      }
+
+      .metrics-image-wrapper {
+        text-align: left;
+      }
     }
 
     @media (max-width: 768px) {
@@ -1234,6 +1271,10 @@
         height: 50px;
         font-size: 1.5rem;
       }
+
+      .metrics-image-wrapper {
+        text-align: center;
+      }
     }
 
     @media (max-width: 480px) {
@@ -1259,6 +1300,7 @@
     <div class="container">
       <nav class="nav">
         <a href="#top" class="logo">
+          <!-- Reemplazá el src por tu logo -->
           <img src="./assets/images/logo-metal-marketing.png" alt="Metal Marketing Logo">
           <div class="logo-text">
             <span>METAL MARKETING</span>
@@ -1418,20 +1460,21 @@
             </div>
           </div>
         </div>
-        <aside class="problem-benefits">
-          <h3>Lo que buscamos conseguir con vos</h3>
-          <ul>
-            <li>Más mensajes todos los días.</li>
-            <li>Clientes que sí están interesados.</li>
-            <li>Estrategias simples, claras y medibles.</li>
-            <li>Resultados sólidos, no promesas vacías.</li>
-          </ul>
+        <aside class="problem-side">
+          <div class="problem-benefits">
+            <h3>Lo que buscamos conseguir con vos</h3>
+            <ul>
+              <li>Más mensajes todos los días.</li>
+              <li>Clientes que sí están interesados.</li>
+              <li>Estrategias simples, claras y medibles.</li>
+              <li>Resultados sólidos, no promesas vacías.</li>
+            </ul>
+          </div>
+          <!-- Imagen de métricas positivas a la derecha -->
+          <div class="metrics-image-wrapper fade-in">
+            <img src="./assets/images/metricas-positivas.jpg" alt="Métricas positivas de campañas">
+          </div>
         </aside>
-      </div>
-
-      <!-- Imagen de métricas positivas -->
-      <div class="metrics-image-wrapper fade-in">
-        <img src="./assets/images/metricas-positivas.jpg" alt="Métricas positivas de campañas">
       </div>
     </div>
   </section>
@@ -1448,8 +1491,8 @@
 
       <div class="services-grid">
         <article class="service-card fade-in">
-          <div class="service-icon">
-            <img src="./assets/images/servicio-campanas.jpg" alt="Campañas publicitarias">
+          <div class="service-image-wrapper">
+            <img src="./assets/images/servicio-campanas.jpg" alt="Campañas publicitarias Meta y Google">
           </div>
           <h3>Campañas publicitarias</h3>
           <p>
@@ -1465,8 +1508,8 @@
         </article>
 
         <article class="service-card fade-in">
-          <div class="service-icon">
-            <img src="./assets/images/servicio-automatizacion.jpg" alt="Embudos y automatizaciones">
+          <div class="service-image-wrapper">
+            <img src="./assets/images/servicio-automatizaciones.jpg" alt="Embudos y automatizaciones">
           </div>
           <h3>Embudos & Automatizaciones</h3>
           <p>
@@ -1482,8 +1525,8 @@
         </article>
 
         <article class="service-card fade-in">
-          <div class="service-icon">
-            <img src="./assets/images/servicio-estrategia.jpg" alt="Estrategia y consultoría">
+          <div class="service-image-wrapper">
+            <img src="./assets/images/servicio-estrategia.jpg" alt="Estrategia y consultoría en marketing">
           </div>
           <h3>Estrategia & Consultoría</h3>
           <p>
@@ -1618,6 +1661,7 @@
     <div class="container">
       <div class="about-inner fade-in">
         <div class="about-photo">
+          <!-- Reemplaza esta imagen por tu foto (brazos cruzados, branding) -->
           <img src="./assets/images/jonathan-metal-marketing.jpg" alt="Jonathan Pernia - Metal Marketing">
         </div>
         <div class="about-text">
@@ -1900,7 +1944,7 @@
     const track = document.getElementById('testimonialTrack');
     const slides = Array.from(track.children);
     const prevBtn = document.getElementById('prevTestimonial');
-    const nextBtn = document.getElementById('nextTestimonial');
+       const nextBtn = document.getElementById('nextTestimonial');
     const indicator = document.getElementById('testimonialIndicator');
 
     let currentIndex = 0;
@@ -1958,9 +2002,9 @@
     Imagen métricas positivas:
     ./assets/images/metricas-positivas.jpg
 
-    Iconos servicios "Soluciones que forjan resultados":
+    Imágenes sección "Soluciones que forjan resultados":
     ./assets/images/servicio-campanas.jpg
-    ./assets/images/servicio-automatizacion.jpg
+    ./assets/images/servicio-automatizaciones.jpg
     ./assets/images/servicio-estrategia.jpg
 
     Foto sección "Detrás de la estrategia":
