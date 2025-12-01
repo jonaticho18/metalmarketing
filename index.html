@@ -178,7 +178,7 @@
       width: 0;
       height: 2px;
       background: linear-gradient(90deg, var(--brand-orange), var(--brand-red));
-      transition: width 0.2s ease-out;
+      transition: width 0.2s.ease-out;
     }
 
     .nav-menu a:hover::after {
@@ -367,7 +367,7 @@
     }
 
     .hero-visual {
-      background: radial-gradient(circle at top left, rgba(246, 133, 27, 0.1), rgba(5, 5, 7, 0.98));
+      background: radial-gradient(circle at top left, rgba(246, 133, 27, 0.12), rgba(5, 5, 7, 0.98));
       border-radius: var(--radius-lg);
       padding: 1.6rem;
       box-shadow: var(--shadow-soft);
@@ -488,7 +488,7 @@
 
     /* PROBLEMA */
     .problem {
-      background: radial-gradient(circle at top, #1c1c1c 0, #050509 55%);
+      background: radial-gradient(circle at top, #261010 0, #050509 55%);
       border-top: 1px solid rgba(255, 255, 255, 0.06);
     }
 
@@ -548,11 +548,18 @@
       font-size: 0.8rem;
     }
 
+    .problem-side {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
     .problem-benefits {
-      background: rgba(0, 0, 0, 0.85);
+      background: rgba(0, 0, 0, 0.9);
       border-radius: var(--radius-lg);
       padding: 1.5rem;
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      width: 100%;
     }
 
     .problem-benefits h3 {
@@ -574,23 +581,33 @@
       color: var(--brand-orange);
     }
 
-    /* Imagen métricas debajo de la sección */
+    /* Imagen métricas a la derecha, debajo de beneficios */
     .metrics-image-wrapper {
-      margin-top: 2.5rem;
+      margin-top: 1.7rem;
       text-align: center;
+      width: 100%;
     }
 
     .metrics-image-wrapper img {
-      max-width: 260px;
+      max-width: 220px; /* tamaño más contenido */
       width: 100%;
       border-radius: 12px;
       border: 1px solid rgba(255, 255, 255, 0.12);
       box-shadow: var(--shadow-card);
     }
 
-    /* SERVICIOS */
+    /* SERVICIOS – sección clara */
     .services {
-      background: #050509;
+      background: #ffffff;
+      color: var(--text-main);
+    }
+
+    .services .section-heading h2 {
+      color: var(--text-main);
+    }
+
+    .services .section-subtitle {
+      color: var(--text-muted);
     }
 
     .services-grid {
@@ -600,20 +617,21 @@
     }
 
     .service-card {
-      background: radial-gradient(circle at top left, rgba(214, 40, 40, 0.16), rgba(5, 5, 7, 0.98));
+      background: radial-gradient(circle at top left, rgba(214, 40, 40, 0.24), #050509);
       border-radius: var(--radius-lg);
       padding: 1.7rem 1.5rem;
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(0, 0, 0, 0.08);
       box-shadow: var(--shadow-card);
       position: relative;
       overflow: hidden;
+      color: #ffffff;
     }
 
     .service-card::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, rgba(214, 40, 40, 0.07), rgba(0, 0, 0, 0.9));
+      background: linear-gradient(135deg, rgba(214, 40, 40, 0.12), rgba(0, 0, 0, 0.9));
       mix-blend-mode: screen;
       opacity: 0;
       transition: opacity 0.2s ease;
@@ -665,7 +683,7 @@
 
     /* RESULTADOS */
     .results {
-      background: radial-gradient(circle at center, #121212 0, #050509 55%);
+      background: radial-gradient(circle at center, #1A0C0C 0, #050509 55%);
       border-top: 1px solid rgba(255, 255, 255, 0.06);
     }
 
@@ -805,9 +823,10 @@
       margin-bottom: 0.6rem;
     }
 
-    /* BIO / ABOUT */
+    /* BIO / ABOUT – sección clara */
     .about {
-      background: #050509;
+      background: #ffffff;
+      color: var(--text-main);
     }
 
     .about-inner {
@@ -820,7 +839,7 @@
     .about-photo {
       border-radius: var(--radius-lg);
       overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(0, 0, 0, 0.08);
       background: radial-gradient(circle at top, rgba(247, 127, 0, 0.18), rgba(0, 0, 0, 0.98));
       min-height: 260px;
       display: flex;
@@ -840,11 +859,12 @@
       text-transform: uppercase;
       letter-spacing: 0.12em;
       margin-bottom: 0.8rem;
+      color: var(--text-main);
     }
 
     .about-text p {
       font-size: 0.94rem;
-      color: var(--brand-gray);
+      color: var(--text-muted);
       margin-bottom: 0.6rem;
     }
 
@@ -859,8 +879,8 @@
       font-size: 0.78rem;
       padding: 0.3rem 0.7rem;
       border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      color: var(--brand-gray);
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      color: var(--text-muted);
     }
 
     /* TESTIMONIOS */
@@ -1078,7 +1098,7 @@
     /* FOOTER */
     footer {
       background: #000000;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      border-top: 2px solid var(--brand-red);
       padding: 1.7rem 0;
       text-align: center;
       font-size: 0.8rem;
@@ -1171,6 +1191,14 @@
       .pricing-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
+
+      .problem-side {
+        align-items: flex-start;
+      }
+
+      .metrics-image-wrapper {
+        text-align: left;
+      }
     }
 
     @media (max-width: 768px) {
@@ -1223,6 +1251,10 @@
         width: 50px;
         height: 50px;
         font-size: 1.5rem;
+      }
+
+      .metrics-image-wrapper {
+        text-align: center;
       }
     }
 
@@ -1409,20 +1441,23 @@
             </div>
           </div>
         </div>
-        <aside class="problem-benefits">
-          <h3>Lo que buscamos conseguir con vos</h3>
-          <ul>
-            <li>Más mensajes todos los días.</li>
-            <li>Clientes que sí están interesados.</li>
-            <li>Estrategias simples, claras y medibles.</li>
-            <li>Resultados sólidos, no promesas vacías.</li>
-          </ul>
-        </aside>
-      </div>
 
-      <!-- Imagen de métricas positivas -->
-      <div class="metrics-image-wrapper fade-in">
-        <img src="./assets/images/metricas-positivas.jpg" alt="Métricas positivas de campañas">
+        <aside class="problem-side">
+          <div class="problem-benefits">
+            <h3>Lo que buscamos conseguir con vos</h3>
+            <ul>
+              <li>Más mensajes todos los días.</li>
+              <li>Clientes que sí están interesados.</li>
+              <li>Estrategias simples, claras y medibles.</li>
+              <li>Resultados sólidos, no promesas vacías.</li>
+            </ul>
+          </div>
+
+          <!-- Imagen de métricas positivas a la derecha -->
+          <div class="metrics-image-wrapper fade-in">
+            <img src="./assets/images/metricas-positivas.jpg" alt="Métricas positivas de campañas">
+          </div>
+        </aside>
       </div>
     </div>
   </section>
