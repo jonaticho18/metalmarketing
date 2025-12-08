@@ -2003,6 +2003,18 @@ src="https://www.facebook.com/tr?id=1398724158629769&ev=PageView&noscript=1"
 
   <!-- SCRIPT CAPI + WHATSAPP -->
   <script>
+  // Leer cookies del Pixel (_fbp y _fbc)
+  function getFbCookies() {
+    function getCookie(name) {
+      const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+      return match ? match[2] : null;
+    }
+    return {
+      fbp: getCookie('_fbp'),
+      fbc: getCookie('_fbc')
+    };
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     // Selecciona todos los enlaces que apunten a wa.me (todos los botones de WhatsApp)
     const whatsappLinks = document.querySelectorAll('a[href*="wa.me"]');
@@ -2011,6 +2023,7 @@ src="https://www.facebook.com/tr?id=1398724158629769&ev=PageView&noscript=1"
       link.addEventListener('click', function () {
         const event_id = Date.now().toString();
         const timestamp = Math.floor(Date.now() / 1000);
+        const fbCookies = getFbCookies();
 
         // Evento client-side (Pixel)
         if (typeof fbq === 'function') {
@@ -2024,8 +2037,9 @@ src="https://www.facebook.com/tr?id=1398724158629769&ev=PageView&noscript=1"
           body: JSON.stringify({
             event_id: event_id,
             timestamp: timestamp,
-            href: link.href,
-            text: link.innerText
+            fbp: fbCookies.fbp,
+            fbc: fbCookies.fbc,
+            user_agent: navigator.userAgent
           })
         });
       });
