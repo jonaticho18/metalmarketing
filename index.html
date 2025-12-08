@@ -1426,7 +1426,7 @@ src="https://www.facebook.com/tr?id=1398724158629769&ev=PageView&noscript=1"
                 No te hablamos de métricas vacías. Miramos lo que importa:
                 mensajes, leads, costo por resultado y oportunidades de venta.
               </p>
-              <div class="hero-visual-badges">
+              <div classhero-visual-badges">
                 <span class="hero-visual-badge">Meta Ads</span>
                 <span class="hero-visual-badge">Google Ads</span>
                 <span class="hero-visual-badge">WhatsApp</span>
@@ -1960,7 +1960,7 @@ src="https://www.facebook.com/tr?id=1398724158629769&ev=PageView&noscript=1"
     const track = document.getElementById('testimonialTrack');
     const slides = Array.from(track.children);
     const prevBtn = document.getElementById('prevTestimonial');
-       const nextBtn = document.getElementById('nextTestimonial');
+    const nextBtn = document.getElementById('nextTestimonial');
     const indicator = document.getElementById('testimonialIndicator');
 
     let currentIndex = 0;
@@ -2001,6 +2001,38 @@ src="https://www.facebook.com/tr?id=1398724158629769&ev=PageView&noscript=1"
     }
   </script>
 
+  <!-- SCRIPT CAPI + WHATSAPP -->
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Selecciona todos los enlaces que apunten a wa.me (todos los botones de WhatsApp)
+    const whatsappLinks = document.querySelectorAll('a[href*="wa.me"]');
+
+    whatsappLinks.forEach(function(link) {
+      link.addEventListener('click', function () {
+        const event_id = Date.now().toString();
+        const timestamp = Math.floor(Date.now() / 1000);
+
+        // Evento client-side (Pixel)
+        if (typeof fbq === 'function') {
+          fbq('track', 'Contact', { eventID: event_id });
+        }
+
+        // Evento server-side vía Make (Conversions API)
+        fetch("https://hook.eu2.make.com/em7lckaku3x7vmut5vs5jc4a44jjuuxt", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            event_id: event_id,
+            timestamp: timestamp,
+            href: link.href,
+            text: link.innerText
+          })
+        });
+      });
+    });
+  });
+  </script>
+
   <!--
     IMÁGENES A SUBIR (mismas rutas usadas en el HTML):
 
@@ -2032,6 +2064,7 @@ src="https://www.facebook.com/tr?id=1398724158629769&ev=PageView&noscript=1"
   -->
 </body>
 </html>
+
 
 
 
