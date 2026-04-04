@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout | Metal Marketing - Tracking Lab</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav class="nav">
+    <a href="index.html" class="nav-brand">
+      <span>METAL MARKETING</span>
+      <span class="nav-badge">Tracking Lab</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Cursos</a>
+      <a href="carrito.html" class="cart-icon">
+        🛒 <span class="cart-count" style="display:none">0</span>
+      </a>
+    </div>
+  </nav>
+
+  <div class="page-hero">
+    <h1>CHECKOUT</h1>
+    <p>Completa tus datos para acceder a los cursos.</p>
+  </div>
+
+  <div class="container">
+    <div id="checkout-content">
+      <!-- Rendered by JS -->
+    </div>
+  </div>
+
+  <script src="tracking-lab.js"></script>
+  <script>
+    const cart = getCart();
+    const total = getCartTotal();
+
+    if (cart.length === 0) {
+      document.getElementById('checkout-content').innerHTML = `
+        <div style="text-align:center;padding:60px;">
+          <h2>Tu carrito está vacío</h2>
+          <a href="index.html" class="btn btn-primary" style="margin-top:20px;">Ver cursos</a>
+        </div>
+      `;
+    } else {
+      document.getElementById('checkout-content').innerHTML = `
+        <div class="checkout-grid">
+          <div>
+            <!-- CONTACT INFO -->
+            <div class="form-section" id="section-contact">
+              <h3>DATOS DE CONTACTO</h3>
+              <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="email" placeholder="tu@email.com">
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Nombre</label>
+                  <input type="text" id="first_name" placeholder="Juan">
+                </div>
+                <div class="form-group">
+                  <label>Apellido</label>
+                  <input type="text" id="last_name" placeholder="Pérez">
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Teléfono</label>
+                <input type="tel" id="phone" placeholder="+54 9 11 5555-1234">
+              </div>
+              <button class="btn btn-primary" onclick="handleShippingInfo()" style="margin-top:8px;">
+                Confirmar datos →
+              </button>
+            </div>
+
+            <!-- PAYMENT INFO -->
+            <div class="form-section" id="section-payment" style="opacity:0.4;pointer-events:none;">
+              <h3>MÉTODO DE PAGO</h3>
+              <div style="display:flex;gap:8px;margin-bottom:16px;">
+                <button class="btn btn-secondary payment-option" data-method="Tarjeta de crédito" onclick="selectPayment(this)" style="flex:1;">
+                  💳 Tarjeta de crédito
+                </button>
+                <button class="btn btn-secondary payment-option" data-method="Transferencia" onclick="selectPayment(this)" style="flex:1;">
+                  🏦 Transferencia
+                </button>
+              </div>
+              <div id="card-fields" style="display:none;">
+                <div class="form-group">
+                  <label>Número de tarjeta</label>
+                  <input type="text" placeholder="1234 5678 9012 3456" maxlength="19">
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>Vencimiento</label>
+                    <input type="text" placeholder="MM/AA" maxlength="5">
+                  </div>
+                  <div class="form-group">
+                    <label>CVV</label>
+                    <input type="text" placeholder="123" maxlength="4">
+                  </div>
+                </div>
+              </div>
+              <div id="transfer-fields" style="display:none;">
+                <div style="background:var(--bg-primary);border:1px solid var(--border);border-radius:8px;padding:16px;margin-top:8px;">
+                  <p style="font-size:13px;color:var(--text-secondary);margin-bottom:8px;">Transferí a esta cuenta:</p>
+                  <p style="font-size:14px;font-weight:600;">CBU: 0000003100099999999999</p>
+                  <p style="font-size:14px;font-weight:600;">Alias: METAL.CURSOS.ARS</p>
+                  <p style="font-size:12px;color:var(--text-muted);margin-top:8px;">Simulación - no es una cuenta real</p>
+                </div>
+              </div>
+              <button class="btn btn-primary btn-block btn-lg" onclick="handlePurchase()" style="margin-top:20px;" id="buy-button" disabled>
+                🔒 Confirmar compra — $${formatPrice(total)} ARS
+              </button>
+            </div>
+
+            <!-- DATA LAYER INFO BOX -->
+            <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-top:20px;">
+              <h4 style="color:var(--accent);font-size:13px;font-weight:700;letter-spacing:1px;margin-bottom:10px;">
+                ⚡ TRACKING EN ESTA PÁGINA
+              </h4>
+              <div style="font-size:13px;color:var(--text-secondary);line-height:1.8;">
+                <div>✓ <strong>begin_checkout</strong> — se disparó al llegar aquí (desde el carrito)</div>
+                <div>⏳ <strong>add_shipping_info</strong> — se dispara al confirmar datos de contacto</div>
+                <div>⏳ <strong>add_payment_info</strong> — se dispara al seleccionar método de pago</div>
+                <div>⏳ <strong>purchase</strong> — se dispara al confirmar la compra</div>
+              </div>
+              <p style="font-size:11px;color:var(--text-muted);margin-top:12px;">
+                Observa el Data Layer Monitor (abajo a la derecha) para ver cada evento en tiempo real.
+              </p>
+            </div>
+          </div>
+
+          <!-- ORDER SUMMARY -->
+          <div class="cart-summary">
+            <h3>TU ORDEN</h3>
+            ${cart.map(item => `
+              <div style="display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);">
+                <span style="font-size:24px;">${item.emoji}</span>
+                <div style="flex:1;">
+                  <div style="font-size:13px;font-weight:600;">${item.item_name}</div>
+                  <div style="font-size:11px;color:var(--text-muted);">${item.item_category2}</div>
+                </div>
+                <span style="font-family:var(--font-display);font-size:18px;color:var(--accent);">
+                  $${formatPrice(item.price)}
+                </span>
+              </div>
+            `).join('')}
+            <div class="summary-row" style="margin-top:12px;">
+              <span>Subtotal</span>
+              <span>$${formatPrice(total)}</span>
+            </div>
+            <div class="summary-row">
+              <span>Envío</span>
+              <span style="color:var(--success);">Gratis</span>
+            </div>
+            <div class="summary-row total">
+              <span>Total</span>
+              <span class="amount">$${formatPrice(total)}</span>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    let selectedPayment = null;
+
+    function handleShippingInfo() {
+      const email = document.getElementById('email').value;
+      const firstName = document.getElementById('first_name').value;
+      const lastName = document.getElementById('last_name').value;
+
+      if (!email || !firstName || !lastName) {
+        showNotification('Completa todos los campos');
+        return;
+      }
+
+      // ==========================================
+      // DATA LAYER: add_shipping_info
+      // El usuario completó sus datos de contacto.
+      // En un ecommerce con envío físico, este
+      // evento incluiría el shipping_tier
+      // (ej: "Express", "Standard").
+      // ==========================================
+      trackAddShippingInfo();
+
+      // Enable payment section
+      const section = document.getElementById('section-payment');
+      section.style.opacity = '1';
+      section.style.pointerEvents = 'auto';
+      section.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+      // Visual feedback
+      document.getElementById('section-contact').style.borderColor = 'var(--success)';
+      showNotification('Datos confirmados ✓');
+
+      // Update tracking info
+      document.querySelector('[data-event="shipping"]')?.classList.add('done');
+    }
+
+    function selectPayment(btn) {
+      // Reset all buttons
+      document.querySelectorAll('.payment-option').forEach(b => {
+        b.style.borderColor = 'var(--border)';
+        b.style.color = 'var(--text-primary)';
+      });
+
+      // Highlight selected
+      btn.style.borderColor = 'var(--accent)';
+      btn.style.color = 'var(--accent)';
+      selectedPayment = btn.dataset.method;
+
+      // Show/hide fields
+      document.getElementById('card-fields').style.display = 
+        selectedPayment === 'Tarjeta de crédito' ? 'block' : 'none';
+      document.getElementById('transfer-fields').style.display = 
+        selectedPayment === 'Transferencia' ? 'block' : 'none';
+
+      // Enable buy button
+      document.getElementById('buy-button').disabled = false;
+
+      // ==========================================
+      // DATA LAYER: add_payment_info
+      // El usuario seleccionó su método de pago.
+      // Este evento incluye payment_type para que
+      // GA4 pueda reportar qué métodos de pago
+      // usan tus clientes.
+      // ==========================================
+      trackAddPaymentInfo(selectedPayment);
+    }
+
+    function handlePurchase() {
+      if (!selectedPayment) {
+        showNotification('Selecciona un método de pago');
+        return;
+      }
+
+      const transactionId = generateTransactionId();
+
+      // ==========================================
+      // DATA LAYER: purchase
+      // ¡LA CONVERSIÓN PRINCIPAL!
+      // Este es el evento más importante de todo
+      // el tracking. Incluye transaction_id único
+      // para deduplicación.
+      //
+      // NOTA: En un ecommerce real, este evento
+      // se dispararía en la THANK YOU PAGE después
+      // de confirmarse el pago, NO en el checkout.
+      // Aquí lo hacemos en el click para simplificar.
+      // ==========================================
+      trackPurchase(transactionId);
+
+      // Save transaction data for thank you page
+      localStorage.setItem('mm_last_order', JSON.stringify({
+        transaction_id: transactionId,
+        items: getCart(),
+        total: getCartTotal(),
+        payment: selectedPayment,
+        date: new Date().toISOString()
+      }));
+
+      // Clear cart and redirect
+      setTimeout(() => {
+        clearCart();
+        window.location.href = 'gracias.html';
+      }, 1000);
+    }
+  </script>
+</body>
+</html>
