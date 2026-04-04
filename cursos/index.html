@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cursos de Marketing Digital | Metal Marketing - Tracking Lab</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- 
+    ==========================================
+    AQUÍ VA EL SNIPPET DE GTM (cuando lo tengas)
+    
+    Reemplaza GTM-XXXXXXX con tu container ID.
+    Este script debe ir lo más arriba posible
+    en el <head> para que GTM capture todo.
+    ==========================================
+  -->
+  <!--
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
+  -->
+</head>
+<body>
+  <!--
+    ==========================================
+    noscript de GTM (cuando lo tengas)
+    ==========================================
+  -->
+  <!--
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  -->
+
+  <nav class="nav">
+    <a href="index.html" class="nav-brand">
+      <span>METAL MARKETING</span>
+      <span class="nav-badge">Tracking Lab</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Cursos</a>
+      <a href="carrito.html" class="cart-icon">
+        🛒 <span class="cart-count" style="display:none">0</span>
+      </a>
+    </div>
+  </nav>
+
+  <div class="page-hero">
+    <h1>CURSOS DE MARKETING DIGITAL</h1>
+    <p>Aprende las habilidades que el mercado demanda. Cursos prácticos, sin relleno, con resultados medibles.</p>
+  </div>
+
+  <div class="container">
+    <div class="product-grid" id="product-grid">
+      <!-- Products rendered by JS -->
+    </div>
+  </div>
+
+  <script src="tracking-lab.js"></script>
+  <script>
+    // ==========================================
+    // RENDER PRODUCT CARDS
+    // ==========================================
+    const grid = document.getElementById('product-grid');
+    
+    PRODUCTS.forEach((product, index) => {
+      const card = document.createElement('a');
+      card.href = `producto.html?id=${product.item_id}`;
+      card.className = 'product-card';
+      card.innerHTML = `
+        <div class="product-img">
+          ${product.emoji}
+          <span class="level-badge">${product.level}</span>
+        </div>
+        <div class="product-info">
+          <h3>${product.item_name}</h3>
+          <p class="desc">${product.description}</p>
+          <div class="product-meta">
+            <span class="product-price">
+              <span class="currency">ARS</span> $${formatPrice(product.price)}
+            </span>
+          </div>
+        </div>
+      `;
+      
+      // Track click on product (select_item)
+      card.addEventListener('click', () => {
+        pushToDataLayer({
+          event: "select_item",
+          ecommerce: {
+            item_list_id: "cursos_marketing",
+            item_list_name: "Cursos de Marketing Digital",
+            items: [formatItem(product, index)]
+          }
+        });
+      });
+      
+      grid.appendChild(card);
+    });
+
+    // ==========================================
+    // DATA LAYER: view_item_list
+    // Este evento se dispara cuando la página
+    // de catálogo se carga. Le dice a GA4 que
+    // el usuario vio esta lista de productos.
+    // ==========================================
+    trackViewItemList(PRODUCTS, "Cursos de Marketing Digital");
+  </script>
+</body>
+</html>
