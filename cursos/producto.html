@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalle de Curso | Metal Marketing - Tracking Lab</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav class="nav">
+    <a href="index.html" class="nav-brand">
+      <span>METAL MARKETING</span>
+      <span class="nav-badge">Tracking Lab</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Cursos</a>
+      <a href="carrito.html" class="cart-icon">
+        🛒 <span class="cart-count" style="display:none">0</span>
+      </a>
+    </div>
+  </nav>
+
+  <div class="container" style="padding-top: 48px;">
+    <div id="product-detail">
+      <!-- Rendered by JS -->
+    </div>
+  </div>
+
+  <script src="tracking-lab.js"></script>
+  <script>
+    // Get product ID from URL
+    const params = new URLSearchParams(window.location.search);
+    const productId = params.get('id');
+    const product = getProduct(productId);
+
+    if (!product) {
+      document.getElementById('product-detail').innerHTML = `
+        <div style="text-align:center;padding:60px;">
+          <h2>Producto no encontrado</h2>
+          <a href="index.html" class="btn btn-secondary" style="margin-top:20px;">← Volver al catálogo</a>
+        </div>
+      `;
+    } else {
+      // Update page title
+      document.title = `${product.item_name} | Metal Marketing`;
+
+      // Render product detail
+      document.getElementById('product-detail').innerHTML = `
+        <a href="index.html" style="color:var(--text-secondary);text-decoration:none;font-size:14px;display:inline-block;margin-bottom:24px;">
+          ← Volver al catálogo
+        </a>
+        <div class="product-detail">
+          <div class="product-detail-img">
+            ${product.emoji}
+          </div>
+          <div class="product-detail-info">
+            <span style="background:var(--accent);color:#fff;padding:4px 12px;border-radius:6px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;">
+              ${product.level}
+            </span>
+            <h1 style="margin-top:12px;">${product.item_name}</h1>
+            <p style="color:var(--text-secondary);font-size:15px;line-height:1.6;margin-top:8px;">
+              ${product.description}
+            </p>
+            <div class="product-detail-price">
+              <span class="currency">ARS</span> $${formatPrice(product.price)}
+            </div>
+            <ul class="product-features">
+              ${product.features.map(f => `<li>${f}</li>`).join('')}
+            </ul>
+            <div style="display:flex;gap:12px;margin-top:24px;">
+              <button class="btn btn-primary btn-lg" onclick="handleAddToCart('${product.item_id}')">
+                🛒 Agregar al carrito
+              </button>
+              <a href="index.html" class="btn btn-secondary btn-lg">
+                Ver más cursos
+              </a>
+            </div>
+            <div style="margin-top:20px;padding:14px;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;">
+              <div style="display:flex;align-items:center;gap:8px;">
+                <span style="color:var(--success);font-size:18px;">✓</span>
+                <span style="font-size:13px;color:var(--text-secondary);">Acceso inmediato después de la compra</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+                <span style="color:var(--success);font-size:18px;">✓</span>
+                <span style="font-size:13px;color:var(--text-secondary);">Garantía de devolución 30 días</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+
+      // ==========================================
+      // DATA LAYER: view_item
+      // Se dispara al cargar la página de producto.
+      // GA4 necesita este evento para:
+      // - Reportes de productos más vistos
+      // - Calcular view-to-cart rate
+      // - Remarketing dinámico
+      // ==========================================
+      trackViewItem(product);
+    }
+
+    function handleAddToCart(id) {
+      addToCart(id);
+      // After adding, show option to go to cart
+      const btn = event.target;
+      btn.textContent = '✓ Agregado';
+      btn.style.background = 'var(--success)';
+      setTimeout(() => {
+        btn.innerHTML = '🛒 Agregado — <a href="carrito.html" style="color:#fff;text-decoration:underline;">Ver carrito</a>';
+      }, 500);
+    }
+  </script>
+</body>
+</html>
