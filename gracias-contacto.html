@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gracias por contactarte | Metal Marketing</title>
+  <meta name="description" content="Gracias por contactarte con Metal Marketing. Recibimos tu consulta." />
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-metal-marketing.png">
+
+  <style>
+    :root {
+      --brand-red: #D62828;
+      --brand-orange: #F77F00;
+      --brand-gray: #B5B5B5;
+      --radius-lg: 16px;
+      --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 1.5rem;
+      font-family: Inter, system-ui, sans-serif;
+      background: radial-gradient(circle at top left, #1e1e1e 0, #050509 45%, #000000 100%);
+      color: #fff;
+    }
+
+    .thankyou-card {
+      width: 100%;
+      max-width: 760px;
+      background: rgba(0, 0, 0, 0.88);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
+      padding: 2.2rem;
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 1rem;
+      padding: 0.45rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--brand-gray);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.78rem;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+
+    h1 span {
+      color: var(--brand-orange);
+    }
+
+    p {
+      color: var(--brand-gray);
+      max-width: 58ch;
+      margin: 0 auto 1rem;
+      line-height: 1.7;
+    }
+
+    .actions {
+      margin-top: 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.9rem 1.4rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      transition: transform 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--brand-orange), var(--brand-red));
+      color: #fff;
+    }
+
+    .btn-outline {
+      border: 1px solid rgba(255,255,255,0.18);
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <main class="thankyou-card">
+    <div class="eyebrow">Consulta recibida</div>
+    <h1>Gracias por contactarte con <span>Metal Marketing</span></h1>
+    <p>
+      Ya recibí tu mensaje. Voy a revisar tu consulta y responderte con una primera orientación lo antes posible.
+    </p>
+    <p>
+      Mientras tanto, también podés seguir viendo la landing o escribir directo por WhatsApp si querés acelerar el contacto.
+    </p>
+
+    <div class="actions">
+      <a class="btn btn-primary" href="./index.html">Volver al inicio</a>
+      <a class="btn btn-outline" href="https://wa.me/5493515310015?text=Hola%20Metal%20Marketing%2C%20acabo%20de%20enviar%20el%20formulario%20y%20quer%C3%ADa%20hablar%20por%20ac%C3%A1%20tambi%C3%A9n." target="_blank" rel="noopener noreferrer">Ir a WhatsApp</a>
+    </div>
+  </main>
+</body>
+</html>
