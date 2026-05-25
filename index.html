@@ -1609,9 +1609,6 @@
       timestampField.value = new Date().toISOString();
 
       const formData = new FormData(leadForm);
-      const nombre = formData.get("Nombre");
-      const email = formData.get("Email");
-      const telefono = formData.get("Telefono");
 
       submitBtn.disabled = true;
       submitBtn.textContent = "Enviando...";
