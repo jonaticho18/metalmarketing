@@ -1,77 +1,158 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <!-- Google Tag Manager -->
+  <script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TBTWVTJF');
+  </script>
+  <!-- End Google Tag Manager -->
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: "thank_you_page_view",
+      page_type: "thank_you",
+      conversion_name: "lead_contacto"
+    });
+  </script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Gracias por contactarte | Metal Marketing</title>
   <meta name="description" content="Gracias por contactarte con Metal Marketing. Recibimos tu consulta." />
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-metal-marketing.png">
 
   <style>
     :root {
-      --brand-red: #D62828;
-      --brand-orange: #F77F00;
-      --brand-gray: #B5B5B5;
-      --radius-lg: 16px;
-      --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.12);
+      --red: #d62828;
+      --orange: #f77f00;
+      --amber: #ffb703;
+      --black: #050608;
+      --muted: #a9b0bd;
+      --text: #f8fafc;
+      --line: rgba(255, 255, 255, 0.12);
+      --radius: 20px;
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.38);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
       min-height: 100vh;
       display: grid;
       place-items: center;
-      padding: 1.5rem;
-      font-family: Inter, system-ui, sans-serif;
-      background: radial-gradient(circle at top left, #1e1e1e 0, #050509 45%, #000000 100%);
-      color: #fff;
+      padding: 24px;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 18% 0%, rgba(247, 127, 0, 0.24), transparent 32%),
+        radial-gradient(circle at 90% 12%, rgba(214, 40, 40, 0.2), transparent 28%),
+        linear-gradient(135deg, #07080b 0%, #11141c 45%, #050608 100%);
+      color: var(--text);
     }
 
-    .thankyou-card {
-      width: 100%;
-      max-width: 760px;
-      background: rgba(0, 0, 0, 0.88);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-card);
-      padding: 2.2rem;
+    .thankyou {
+      width: min(100%, 820px);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.035)),
+        rgba(8, 10, 14, 0.92);
+      box-shadow: var(--shadow);
+      padding: clamp(28px, 6vw, 56px);
       text-align: center;
     }
 
+    .logo {
+      width: 84px;
+      height: auto;
+      margin: 0 auto 22px;
+    }
+
     .eyebrow {
-      display: inline-block;
-      margin-bottom: 1rem;
-      padding: 0.45rem 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      padding: 8px 13px;
+      border: 1px solid var(--line);
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.12);
-      color: var(--brand-gray);
-      text-transform: uppercase;
+      color: #d8dde6;
+      font-size: 0.76rem;
+      font-weight: 800;
       letter-spacing: 0.12em;
-      font-size: 0.78rem;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #20c77a;
+      box-shadow: 0 0 18px rgba(32, 199, 122, 0.8);
     }
 
     h1 {
-      font-size: clamp(2rem, 4vw, 3rem);
-      line-height: 1.1;
-      margin-bottom: 1rem;
+      max-width: 720px;
+      margin: 0 auto;
+      font-size: clamp(2.5rem, 7vw, 4.7rem);
+      line-height: 0.92;
+      letter-spacing: 0;
+      text-transform: uppercase;
     }
 
     h1 span {
-      color: var(--brand-orange);
+      display: inline-block;
+      background: linear-gradient(135deg, var(--amber), var(--orange), var(--red));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
 
     p {
-      color: var(--brand-gray);
-      max-width: 58ch;
-      margin: 0 auto 1rem;
+      max-width: 620px;
+      margin: 22px auto 0;
+      color: var(--muted);
+      font-size: 1.02rem;
       line-height: 1.7;
     }
 
+    .next-box {
+      margin: 28px auto 0;
+      max-width: 620px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 18px;
+      text-align: left;
+    }
+
+    .next-box strong {
+      display: block;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .next-box span {
+      color: var(--muted);
+      font-size: 0.94rem;
+      line-height: 1.6;
+    }
+
     .actions {
-      margin-top: 1.5rem;
+      margin-top: 32px;
       display: flex;
       flex-wrap: wrap;
-      gap: 1rem;
+      gap: 14px;
       justify-content: center;
     }
 
@@ -79,13 +160,15 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 0.4rem;
-      padding: 0.9rem 1.4rem;
+      min-height: 50px;
+      padding: 0 22px;
       border-radius: 999px;
       text-decoration: none;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      transition: transform 0.2s ease;
+      font-size: 0.86rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: transform 0.2s ease, border-color 0.2s ease;
     }
 
     .btn:hover {
@@ -93,31 +176,75 @@
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, var(--brand-orange), var(--brand-red));
+      background: linear-gradient(135deg, var(--orange), var(--red));
       color: #fff;
+      box-shadow: 0 18px 42px rgba(247, 127, 0, 0.34);
     }
 
     .btn-outline {
-      border: 1px solid rgba(255,255,255,0.18);
+      border: 1px solid var(--line);
       color: #fff;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    @media (max-width: 620px) {
+      .actions {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
     }
   </style>
 </head>
+
 <body>
-  <main class="thankyou-card">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TBTWVTJF" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+  </noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <main class="thankyou">
+    <img class="logo" src="./assets/images/logo-metal-marketing.png" alt="Metal Marketing Logo">
+
     <div class="eyebrow">Consulta recibida</div>
-    <h1>Gracias por contactarte con <span>Metal Marketing</span></h1>
+
+    <h1>Gracias, tu mensaje ya está en <span>Metal Marketing</span></h1>
+
     <p>
-      Ya recibí tu mensaje. Voy a revisar tu consulta y responderte con una primera orientación lo antes posible.
-    </p>
-    <p>
-      Mientras tanto, también podés seguir viendo la landing o escribir directo por WhatsApp si querés acelerar el contacto.
+      Recibí tu consulta correctamente. Voy a revisar tu caso y responderte con una primera orientación lo antes posible.
     </p>
 
+    <div class="next-box">
+      <strong>Próximo paso</strong>
+      <span>
+        Si querés acelerar el contacto, podés escribirme también por WhatsApp. Si no, simplemente esperá mi respuesta por los datos que dejaste en el formulario.
+      </span>
+    </div>
+
     <div class="actions">
-      <a class="btn btn-primary" href="./index.html">Volver al inicio</a>
-      <a class="btn btn-outline" href="https://wa.me/5493515310015?text=Hola%20Metal%20Marketing%2C%20acabo%20de%20enviar%20el%20formulario%20y%20quer%C3%ADa%20hablar%20por%20ac%C3%A1%20tambi%C3%A9n." target="_blank" rel="noopener noreferrer">Ir a WhatsApp</a>
+      <a class="btn btn-primary" href="https://metalmarketing.online/">Volver al inicio</a>
+      <a class="btn btn-outline js-whatsapp" href="https://wa.me/5493515310015?text=Hola%20Metal%20Marketing%2C%20acabo%20de%20enviar%20el%20formulario%20y%20quer%C3%ADa%20hablar%20por%20ac%C3%A1%20tambi%C3%A9n." target="_blank" rel="noopener noreferrer">
+        Ir a WhatsApp
+      </a>
     </div>
   </main>
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    document.querySelectorAll(".js-whatsapp").forEach((link) => {
+      link.addEventListener("click", () => {
+        window.dataLayer.push({
+          event: "whatsapp_click",
+          click_text: link.textContent.trim(),
+          click_url: link.href,
+          page_type: "thank_you"
+        });
+      });
+    });
+  </script>
 </body>
 </html>
