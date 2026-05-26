@@ -1675,9 +1675,15 @@ await fetch(APPS_SCRIPT_ENDPOINT, {
 });
 
         window.dataLayer.push({
-          event: "lead_form_success",
-          form_name: "diagnostico_metal_marketing"
-        });
+  event: "lead_form_success",
+  form_name: "diagnostico_metal_marketing",
+  utm_source: getStoredParam("utm_source"),
+  utm_medium: getStoredParam("utm_medium"),
+  utm_campaign: getStoredParam("utm_campaign"),
+  utm_content: getStoredParam("utm_content"),
+  utm_term: getStoredParam("utm_term"),
+  landing_url: window.location.href
+});
 
         window.location.href = THANK_YOU_URL;
       } catch (error) {
