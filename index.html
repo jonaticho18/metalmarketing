@@ -1185,6 +1185,12 @@
             <form class="form" id="leadForm">
               <input type="hidden" name="Origen" value="Landing Metal Marketing - Home">
               <input type="hidden" name="Timestamp" id="timestampField">
+              <input type="hidden" name="UTM Source" id="utmSourceField">
+              <input type="hidden" name="UTM Medium" id="utmMediumField">
+              <input type="hidden" name="UTM Campaign" id="utmCampaignField">
+              <input type="hidden" name="UTM Content" id="utmContentField">
+              <input type="hidden" name="UTM Term" id="utmTermField">
+              <input type="hidden" name="Landing URL" id="landingUrlField">
 
               <div class="field">
                 <label for="nombre">Nombre</label>
@@ -1558,6 +1564,43 @@
     const THANK_YOU_URL = "https://metalmarketing.online/gracias-contacto.html";
 
     window.dataLayer = window.dataLayer || [];
+    function getUrlParam(paramName) {
+  const params = new URLSearchParams(window.location.search);
+  return params.get(paramName) || "";
+}
+
+function persistUtmParams() {
+  const utmParams = [
+    "utm_source",
+    "utm_medium",
+    "utm_campaign",
+    "utm_content",
+    "utm_term"
+  ];
+
+  utmParams.forEach((param) => {
+    const value = getUrlParam(param);
+    if (value) {
+      localStorage.setItem(param, value);
+    }
+  });
+}
+
+function getStoredParam(paramName) {
+  return localStorage.getItem(paramName) || "";
+}
+
+function populateTrackingFields() {
+  document.getElementById("utmSourceField").value = getStoredParam("utm_source");
+  document.getElementById("utmMediumField").value = getStoredParam("utm_medium");
+  document.getElementById("utmCampaignField").value = getStoredParam("utm_campaign");
+  document.getElementById("utmContentField").value = getStoredParam("utm_content");
+  document.getElementById("utmTermField").value = getStoredParam("utm_term");
+  document.getElementById("landingUrlField").value = window.location.href;
+}
+
+persistUtmParams();
+populateTrackingFields();
 
     const menuToggle = document.getElementById("menuToggle");
     const navMenu = document.getElementById("navMenu");
